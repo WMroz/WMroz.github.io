@@ -5,12 +5,13 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
     display: grid;
 }
+.head title{
+    display: none;
+}
 
 .print-area{
     width: 90%;
     margin: 10px auto;
-
-
 }
 .print-area .header{
     width: 100%;
