@@ -1,0 +1,187 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    display: grid;
+}
+
+.print-area{
+    width: 90%;
+    margin: 10px auto;
+
+
+}
+.print-area .header{
+    width: 100%;
+    height: 150px;
+    background-color:darkcyan;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.header img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50px;
+    left: 65px;
+    border: 5px solid white;
+    box-shadow: 3px 3px 10px gray;
+    cursor: pointer;
+    transition: .5s;
+    user-select: none;
+}
+.header-text{
+    color: gainsboro;
+    width: 60%;
+    margin-left: auto;
+}
+.header-text h1{
+    font-size: 70px;
+    font-weight: normal;
+}
+.content{
+    display: flex;
+    flex-wrap: wrap;
+}
+.left-area{
+    width: 35%;
+    background-color: lightgrey;
+    text-align: center;
+}
+.left-area .contact{
+    margin-top: 130px;
+    padding: 0 30px;
+}
+.contact h4{
+    font-size: 40px;
+    font-weight: bold;
+    margin: 20px o;
+}
+.contact h5{
+    font-size: 18px;
+    margin: 10px 0;
+}
+.contact p{
+    font-size: 17px;
+}
+.skills h4{
+    font-size: 40px;
+    font-weight: bold;
+    margin: 10px o;
+}
+.bars{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 20px 10px;
+    padding: 0 20px;
+}
+.bars .bar p{
+    font-size: 15px;
+    font-weight: bold;
+}
+.bar span{
+    display: block;
+    width: 100%;
+    height: 10px;
+    background-color: rgb(247, 239, 239);
+    margin-top: 10px;
+    border-radius: 10px;
+    position: relative;
+}
+.bar span::before{
+    position: absolute;
+    content: "";
+    width: 80%;
+    height: 80%;
+    background-color: rgb(39, 117, 117);
+    top: 50%;
+    left: 2px;
+    transform: translateY(-50%);
+    border-radius: 10px;
+}
+.right-area{
+    width: 65%;
+    padding: 50px;
+
+}
+.right-area h1{
+    font-size: 35px;
+    font-weight: bold;
+    align-items: center;
+    display: flex;
+    color: darkcyan;
+}
+.right-area h1 img{
+    margin-top: 20px;
+}
+.right-area h1 span{
+    margin-right: 30px;
+    font-size: 60px;
+    color: lightgray;
+    margin-bottom: 20px;
+
+}
+.right-area p{
+    margin-left: 70px;
+    text-align: justify;
+    margin-top: 10px;
+}
+.work-group{
+    margin: 10px 0;
+}
+.work .work-group{
+    position: relative;
+}
+.work-group h3{
+    font-size: 22px;
+    font-weight: normal;
+    padding-left: 70px;
+}
+.work-group h4{
+    font-size: 18px;
+    padding-left: 70px;
+    font-weight: normal;
+    color: darkgrey;
+}
+.work-group span{
+    position: absolute;
+    top: 10px;
+    right: 0;
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+}
+.education{
+    margin-top: 30px;
+}
+.edu-group{
+    position: relative;
+    margin: 10px 0;
+}
+.edu-group h4{
+    padding-left: 70px;
+    font-size: 20px;
+    font-weight: normal;
+}
+.edu-group span{
+    position: absolute;
+    top: 10px;
+    right: 0;
+    font-size: 15px;
+    font-weight: bold;
+}
+.edu-group p{
+    margin-left: 70px;
+    text-align: justify;
+    margin-top: 10px;
+    color: darkgray;
+}
+.hobby{
+    margin-top: 30px;
+}
+.hobby p{
+    font-size: 20px;
+}
