@@ -1,3 +1,7 @@
+body {
+	padding: 0;
+	margin: 0;
+}
 .home *{
 	padding: 0;
 	margin:0;
@@ -6,7 +10,7 @@
 	font-family: arial, sans-serif;
 }
 
-body.home {
+div.home {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
@@ -67,7 +71,7 @@ body.home {
 	margin-top: -8px;
 	text-align: center;
 }
-.home .s-box .s-input {
+.home .s-box .search_input {
 	display: block;
 	border: 1px solid #ddd;
 	color: rgba(0,0,0, 0.87);
@@ -79,7 +83,7 @@ body.home {
 	transition: box-shadow 100ms;
 	outline: none;
 }
-.home .s-box  .s-input:hover {
+.home .s-box  .search_input:hover {
 	border: 1px solid #fff;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.05), 
 				0 0 2px rgba(0, 0, 0, 0.05),
