@@ -167,6 +167,23 @@ div.results {
 .results .searchresult {
     margin-left: 8px;
 }
+.results .searchResults .cities{
+    padding:20px;
+}
+
+.results .searchResults .cities a{
+    color: black;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.results .searchResults .cities ul li{
+    color:rgb(0, 3, 166);
+    font-size: 20px;
+    display: list-item;
+    margin-left: 8px;
+    padding: 5px;
+}
 .results .searchresult p{
     margin-bottom: 4px;
 }

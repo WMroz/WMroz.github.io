@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="styleSearch.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./cities.js"></script>
 </head>
 <!-- <body class="results"> -->
 <body>
@@ -22,7 +23,7 @@
       	<form><br><br>
       		<div class="s-box">
       			<img src="googleser.svg" class="search-icon">
-      			<input v-model="googleSearch" type="text" class="search_input"/>
+      			<input ref="first" v-model="googleSearch" type="text" class="search_input"/>
                 <img src="googlekey.png" class="keyboard-icon">
       			<img src="googlemic.png" class="vs-icon">
       			<input type="submit" class="s-btn" value="Szukaj w Google">
@@ -58,7 +59,7 @@
         <div id="topbar">
             <img id="searchbarimage" src="googlelog.png" />
             <div id="searchbar" type="text">
-                <input id="searchbartext" type="text" value="html tutorial" />
+                <input ref="second" id="searchbartext" type="text" v-model="googleSearch" />
                 <button id="searchbarmic">
                     <img src="googlemic.png" />
                 </button>
@@ -93,6 +94,16 @@
     </div>
     <div id="searchresultsarea">
         <p id="searchresultsnumber">Około 1 030 000 000 wyników (0.56 s) </p>
+        
+        <div class="cities">
+            <a class="link">Miasta zawierające <b>"{{googleSearch}}"</b>:</a>
+            <ul>
+              <li v-for="city in filteredCities">
+                {{ city.name }}
+              </li>
+            </ul>
+          </div>
+
         <div class="searchresult">
             <h2>HTML Tutorial - W3Schools > html</h2>
             <a>www.w3schools.com</a> <button>▼</button>
@@ -212,7 +223,32 @@
       el: '#app',
       data: {
         googleSearch: '',
+        cities: window.cities,
+      },
+      computed: {
+      filteredCities: function() {
+        let result = this.cities.filter(city => city.name.includes(this.googleSearch));
+        if(result.length>10){
+          return result.slice(1,11);
+        }
+        return result;
       }
-    });
+    },
+
+    updated() {
+        this.$nextTick(() => {
+
+        if (this.googleSearch.length > 0) {
+
+        this.$refs.second.focus();
+
+        } else {
+
+        this.$refs.first.focus();
+
+        }
+      })
+    }
+});
   </script>
 </html>
