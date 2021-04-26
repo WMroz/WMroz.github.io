@@ -10,7 +10,7 @@
 </head>
 <!-- <body class="results"> -->
 <body>
-    <div id="app" :class="[googleSearch.length > 0 ? 'results' : 'home']"> 
+    <div id="app" :class="[isActive == 1 ? 'results' : 'home']"> 
         	<!-- homepage -->
       <nav>
       	<a href="#">Gmail</a>
@@ -23,9 +23,16 @@
       	<form><br><br>
       		<div class="s-box">
       			<img src="googleser.svg" class="search-icon">
-      			<input ref="first" v-model="googleSearch" type="text" class="search_input"/>
+      			<input ref="first" v-model="googleSearch" list="listaMiast" type="text" class="search_input"/>
                 <img src="googlekey.png" class="keyboard-icon">
       			<img src="googlemic.png" class="vs-icon">
+                  <div class="cities">
+                    <li v-for="city in filteredCities" @click="handleClick(city.name)">
+                    <img class="glass" src="googleser.svg">
+                    <div class="podpowiedzi" v-html="highlight(city.name)"></div>
+                    <!-- <b>{{ city.name.substring(1, googleSearch.indexOf(city.name[0])) }}</b>{{googleSearch}}<b>{{ city.name.substring(googleSearch.length + 20) }}</b> -->
+                    </li>
+                </div>
       			<input type="submit" class="s-btn" value="Szukaj w Google">
       			<input type="submit" class="s-btn" value="Szczęśliwy traf">
       		</div>
@@ -93,16 +100,8 @@
         </div>
     </div>
     <div id="searchresultsarea">
-        <p id="searchresultsnumber">Około 1 030 000 000 wyników (0.56 s) </p>
+        <p id="searchresultsnumber">Około 1 030 000 000 resultów (0.56 s) </p>
         
-        <div class="cities">
-            <a class="link">Miasta zawierające <b>"{{googleSearch}}"</b>:</a>
-            <ul>
-              <li v-for="city in filteredCities">
-                {{ city.name }}
-              </li>
-            </ul>
-          </div>
 
         <div class="searchresult">
             <h2>HTML Tutorial - W3Schools > html</h2>
@@ -219,36 +218,35 @@
 
 </body>
 <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        googleSearch: '',
-        cities: window.cities,
-      },
-      computed: {
-      filteredCities: function() {
-        let result = this.cities.filter(city => city.name.includes(this.googleSearch));
-        if(result.length>10){
-          return result.slice(1,11);
+   var app = new Vue({
+    el: '#app',
+    data: {
+      googleSearch: '',
+      isActive: 0,
+      cities: window.cities,
+    },
+    computed: {
+      filteredCities: function () {
+        if (this.googleSearch.length == 0) {
+          return
         }
-        return result;
+        let result = this.cities.filter(city => city.name.includes(this.googleSearch))
+
+        if (result.length > 10) {
+          result = result.slice(0, 10)
+        }
+        return result
       }
     },
-
-    updated() {
-        this.$nextTick(() => {
-
-        if (this.googleSearch.length > 0) {
-
-        this.$refs.second.focus();
-
-        } else {
-
-        this.$refs.first.focus();
-
-        }
-      })
-    }
-});
+    methods: {
+      handleClick: function (name) {
+        this.googleSearch = name;
+        this.isActive = 1;
+      },
+      highlight: function(phrase) {
+        return phrase.replaceAll(this.googleSearch, '<span class="highlight">' + this.googleSearch + '</span>')
+      }
+    },
+  });
   </script>
 </html>
