@@ -23,14 +23,13 @@
       	<form><br><br>
       		<div class="s-box">
       			<img src="googleser.svg" class="search-icon">
-      			<input ref="first" v-model="googleSearch" list="listaMiast" type="text" class="search_input"/>
+      			<input ref="first" v-model="googleSearch" list="listaMiast" type="text" class="search_input" @keyup.down="goDown()" @keyup.up="goUp()" />
                 <img src="googlekey.png" class="keyboard-icon">
       			<img src="googlemic.png" class="vs-icon">
                   <div class="cities">
-                    <li v-for="city in filteredCities" @click="handleClick(city.name)">
+                    <li v-for="(city,index) in filteredCities" @click="handleClick(city.name)">
                     <img class="glass" src="googleser.svg">
                     <div class="podpowiedzi" v-html="highlight(city.name)"></div>
-                    <!-- <b>{{ city.name.substring(1, googleSearch.indexOf(city.name[0])) }}</b>{{googleSearch}}<b>{{ city.name.substring(googleSearch.length + 20) }}</b> -->
                     </li>
                 </div>
       			<input type="submit" class="s-btn" value="Szukaj w Google">
@@ -100,7 +99,7 @@
         </div>
     </div>
     <div id="searchresultsarea">
-        <p id="searchresultsnumber">Około 1 030 000 000 resultów (0.56 s) </p>
+        <p id="searchresultsnumber">Około 1 030 000 000 wyników (0.56 s) </p>
         
 
         <div class="searchresult">
@@ -236,8 +235,14 @@
           result = result.slice(0, 10)
         }
         return result
+        
       }
     },
+    watch: {
+        forPick: function () {
+            //cos
+            },
+        },
     methods: {
       handleClick: function (name) {
         this.googleSearch = name;
@@ -245,7 +250,13 @@
       },
       highlight: function(phrase) {
         return phrase.replaceAll(this.googleSearch, '<span class="highlight">' + this.googleSearch + '</span>')
-      }
+      },
+      goDown(){
+        //cos
+        },
+      goUp(){
+       //cos
+      },
     },
   });
   </script>

@@ -129,15 +129,6 @@ div.home {
 .home .s-btn:hover {
 	border: 1px solid #aaa;
 }
-/* .home .section-1 .s-box .cities{
-	width: 90%;
-	font-size: 16px;
-	list-style: none;
-	margin-left: 5%;
-	line-height: 35px;
-	font-size: 15px;
-	list-style: none;
-  } */
 .home .cities{
 
 	width: 580px;
@@ -177,6 +168,9 @@ div.home {
 	text-align: left;
 	height: 35px;
 	margin-top: 10px;
+}
+.HighBack{
+    background-color: #dfe1e5;
 }
 .home .cities .podpowiedzi{
 	font-weight: bold;
