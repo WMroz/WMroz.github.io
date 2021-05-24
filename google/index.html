@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Google</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -67,8 +68,8 @@
 
 
 
-	  <!-- results -->
-	  <div id="header">
+	<!-- results -->
+	<div id="header">
         <div id="topbar">
             <img id="searchbarimage" src="googlelog.png" />
             <div id="searchbar" type="text">
@@ -219,33 +220,29 @@
             <li>Warunki</li>
         </ul>
     </div>
-
-
-
+    </div>
+    <script>
+        var app = new Vue({
+          el: '#app',
+          data: {
+            enterValues: [],
+            cities: window.cities,
+            isActive: 0,
+            googleSearch: '',
+          },
+          methods: {
+            showResults(newValue) {
+                this.enterValues.push(newValue);
+    
+                if (this.isActive == 0) {
+                    this.isActive = 1;
+                } else{
+                    this.$emit('input', '');
+                    this.isActive = 0;
+                }
+            }
+          },
+        });
+    </script>
 </body>
-<script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        enterValues: [],
-        cities: window.cities,
-        isActive: 0,
-        googleSearch: '',
-      },
-      methods: {
-        showResults(newValue) {
-        this.enterValues.push(newValue);
-
-        if (this.isActive == 0){
-          this.isActive = 1;
-        }
-        else{
-          this.$emit('input', '');
-          this.isActive = 0;
-        }
-      },
-    }      
-  
-    });
-  </script>
 </html>
