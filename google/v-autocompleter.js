@@ -42,12 +42,11 @@ Vue.component('v-autocompleter', {
             if(this.value.length == 0){
                 this.filteredCities = [];
               } else{
-                this.CreateCities(this.updated);
                 this.updated=true;
         
                 if(this.forPick == -1){
                   this.googleSearch_temp = this.value; 
-                  this.CreateCities(true);     
+                  this.CreateCities();     
                 }
               }
             }
