@@ -64,18 +64,6 @@ Vue.component('v-autocompleter', {
           }
         this.forPick = -1;
     },
-    //   createFilteredList(bool){
-    //     if(bool){
-    //         let result = this.cities.filter(city => city.name.includes(this.value));
-    //         if(result.length>10){
-    //             this.filteredCities = result.slice(1,11);
-    //         }
-    //         else{
-    //             this.filteredCities = result;
-    //         }
-    //         this.forPick = -1;
-    //       }
-    // },
       handleClick(name) {
         this.$emit('input', this.value);
         this.clickEnter();
