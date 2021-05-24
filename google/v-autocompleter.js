@@ -1,6 +1,6 @@
 Vue.component('v-autocompleter', {
     template: `
-    <div>
+    <div class="vue-autocompleter">
     <input
       ref="first"
       :value="value"
@@ -17,8 +17,7 @@ Vue.component('v-autocompleter', {
           <div class="podpowiedzi" v-on:click="choose(index)" v-html="highlight(city.name)"></div>
         </li>
       </div>
-      </div>`,
-
+    </div>`,
     props: ['value', 'options'],
     data: function(){
         return {
@@ -72,7 +71,7 @@ Vue.component('v-autocompleter', {
         this.$emit('input', this.filteredCities[i].name);
     },
       highlight: function(phrase) {
-        return phrase.replaceAll(this.googleSearch, '<span class="highlight">' + this.googleSearch + '</span>')
+        return phrase.replaceAll(this.value, '<span class="highlight">' + this.value + '</span>')
       },
       goDown(){
         if(this.forPick < this.filteredCities.length -1){
