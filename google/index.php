@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="v-autocompleter.css">
 	<link rel="stylesheet" type="text/css" href="styleSearch.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script src="./cities.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js" integrity="sha512-JZSo0h5TONFYmyLMqp8k4oPhuo6yNk9mHM+FY50aBjpypfofqtEWsAgRDQm94ImLCzSaHeqNvYuD9382CEn2zw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="v-autocompleter.js"></script>
 </head>
 <!-- <body class="results"> -->
@@ -27,7 +27,14 @@
             
       		<div class="s-box">
                 <img src="googleser.svg" class="search-icon">
-                <v-autocompleter v-model="googleSearch" :options="cities" @enter="showResults"></v-autocompleter>
+                <!-- <v-autocompleter v-model="googleSearch" :options="cities" @enter="showResults"></v-autocompleter> -->
+		<div id="app">
+                {{ googleSearch }}
+                <input type="text" v-model="googleSearch" @input="findResultsDebounced" />
+                <div v-for="city in results" :key="city.name">
+                <span class="name">{{ city.name }}</span>
+                </div>
+            	</div>
                 <img src="googlekey.png" class="keyboard-icon">
       			<img src="googlemic.png" class="vs-icon">
                   
@@ -221,7 +228,28 @@
         </ul>
     </div>
     </div>
-    <script>
+	<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            googleSearch: '',
+            results: []
+        },
+        methods : {
+            findResultsDebounced : Cowboy.debounce(100, function findResultsDebounced() {
+                console.log('Fetch: ', this.googleSearch)
+                console.log(`http://localhost:8080/search?name=${this.googleSearch}`);
+                fetch(`http://localhost:8080/search?name=${this.googleSearch}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Data: ', data);
+                        this.results = data;
+                    });
+            })
+        }
+    })
+  	</script>
+<!--     <script>
         var app = new Vue({
           el: '#app',
           data: {
@@ -243,6 +271,6 @@
             }
           },
         });
-    </script>
+    </script> -->
 </body>
 </html>
